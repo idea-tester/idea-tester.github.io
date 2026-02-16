@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Domain Portfolio</title>
+<title>Domain List</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#0a0a0a;--text:#D6D6D6;--muted:#666;--accent:#E0FFFF;--line:#1a1a1a;--hover:#111;--link:#FFD700}
@@ -46,7 +46,7 @@ footer{padding:16px 0 24px;text-align:center}
 <body>
 <div class="container">
 <header>
-<h1>Domain Portfolio</h1>
+<h1>Feel free to touch me.</h1>
 <span class="contact-trigger" onclick="toggleContact()">Contact</span>
 </header>
 <div class="contact-popup" id="contactPopup">
@@ -57,11 +57,10 @@ footer{padding:16px 0 24px;text-align:center}
 <footer><div class="powered">Powered by <a href="https://xxxx.com">xxxx</a></div></footer>
 </div>
 <script>
-const domains=[{name:"example.com",price:"¥12,000",intro:"简短易记，适合品牌项目",detail:"注册于2010年，历史悠久。**优势：**简短易记，适合品牌项目。"}];
-const contact=`Email: [xx@xx.xx](mailto:xx@xx.xx)
-Telegram: [@username](https://t.me/username)
-WeChat: [wxid_xxx](weixin://)
-Mastodon: [@user@mastodon.social](https://mastodon.social/@user)`;
+const domains=[{name:"mouhuan.com",price:"仅展示",intro:"谋求片刻欢愉。",detail:"双拼.com，现为博客。"}];
+const contact=`Email: hi#mouhuan.com(替换#为@)
+WeChat: REDACTED_FOR_PRIVACY
+Telegram: [@yamiwiki(请在这个频道内发起私聊)](https://t.me/yamiwiki)`;
 const list=document.getElementById('list');
 const contactDiv=document.getElementById('contact');
 const popup=document.getElementById('contactPopup');
@@ -70,6 +69,6 @@ contactDiv.innerHTML=fmt(contact);
 function toggleContact(){popup.classList.toggle('active');}
 function fmt(t){return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>').replace(/`(.*?)`/g,'<code>$1</code>').replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2">$1</a>').replace(/\n/g,'<br>');}
 document.addEventListener('click',function(e){if(!e.target.closest('.contact-trigger')&&!e.target.closest('.contact-popup')&&popup.classList.contains('active')){popup.classList.remove('active');}});
-</script>
+</scrip>
 </body>
 </html>
