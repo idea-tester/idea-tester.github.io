@@ -8,16 +8,15 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#0a0a0a;--text:#D6D6D6;--muted:#666;--accent:#E0FFFF;--line:#1a1a1a;--hover:#111;--link:#FFD700}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px;-webkit-font-smoothing:antialiased}
-.container{max-width:720px;margin:0 auto;padding:0 24px;position:relative}
+.container{max-width:720px;margin:0 auto;padding:0 24px}
 header{padding:24px 0 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
 h1{font-size:16px;font-weight:400;letter-spacing:0.02em;color:var(--accent)}
-.contact-trigger{color:var(--accent);font-size:13px;cursor:pointer;padding:4px 0}
-.contact-popup{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.85);display:none;align-items:flex-start;justify-content:center;z-index:100;padding-top:80px}
-.contact-popup.active{display:flex}
-.contact-content{background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line);width:100%;max-width:720px;padding:24px;font-size:13px;line-height:2.2;color:var(--accent)}
+.contact-trigger{color:var(--accent);font-size:13px;cursor:pointer;padding:4px 0;position:relative}
+.contact-popup{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,.95);display:none;z-index:100;padding-top:100px}
+.contact-popup.active{display:block}
+.contact-content{width:100%;max-width:720px;margin:0 auto;padding:24px;font-size:13px;line-height:2.2;color:var(--accent)}
 .contact-content a{color:var(--accent);text-decoration:underline;text-decoration-color:var(--link)}
-.contact-content a:hover{text-decoration-color:var(--text)}
-.contact-close{position:absolute;top:24px;right:24px;color:var(--muted);font-size:20px;cursor:pointer;padding:8px}
+.contact-close{position:absolute;top:20px;right:24px;color:var(--muted);font-size:24px;cursor:pointer}
 .domain-list{list-style:none;padding:8px 0}
 .domain-item{border-bottom:1px solid var(--line)}
 .domain-header{display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;cursor:pointer;gap:16px}
@@ -40,9 +39,8 @@ h1{font-size:16px;font-weight:400;letter-spacing:0.02em;color:var(--accent)}
 .detail-content a:hover{border-bottom-color:var(--accent)}
 footer{padding:16px 0 24px;text-align:center}
 .powered{font-size:11px;color:var(--muted)}
-.powered a{color:var(--muted);text-decoration:none}
-.powered a:hover{color:var(--accent)}
-@media(min-width:768px){.contact-trigger:hover .contact-popup{display:flex}.contact-popup{display:none!important}}
+.powered a{color:var(--text);text-decoration:underline;text-decoration-color:var(--text)}
+.powered a:hover{color:var(--accent);text-decoration-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -51,7 +49,7 @@ footer{padding:16px 0 24px;text-align:center}
 <h1>Domain Portfolio</h1>
 <span class="contact-trigger" onclick="toggleContact()">Contact</span>
 </header>
-<div class="contact-popup" id="contactPopup" onclick="if(event.target===this)toggleContact()">
+<div class="contact-popup" id="contactPopup">
 <span class="contact-close" onclick="toggleContact()">×</span>
 <div class="contact-content" id="contact"></div>
 </div>
@@ -62,7 +60,7 @@ footer{padding:16px 0 24px;text-align:center}
 const domains=[{name:"example.com",price:"¥12,000",intro:"简短易记，适合品牌项目",detail:"注册于2010年，历史悠久。**优势：**简短易记，适合品牌项目。"}];
 const contact=`Email: [xx@xx.xx](mailto:xx@xx.xx)
 Telegram: [@username](https://t.me/username)
-WeChat: wxid
+WeChat: [wxid_xxx](weixin://)
 Mastodon: [@user@mastodon.social](https://mastodon.social/@user)`;
 const list=document.getElementById('list');
 const contactDiv=document.getElementById('contact');
@@ -71,6 +69,7 @@ domains.forEach((d,i)=>{const li=document.createElement('li');li.className='doma
 contactDiv.innerHTML=fmt(contact);
 function toggleContact(){popup.classList.toggle('active');}
 function fmt(t){return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>').replace(/`(.*?)`/g,'<code>$1</code>').replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2">$1</a>').replace(/\n/g,'<br>');}
+document.addEventListener('click',function(e){if(!e.target.closest('.contact-trigger')&&!e.target.closest('.contact-popup')&&popup.classList.contains('active')){popup.classList.remove('active');}});
 </script>
 </body>
 </html>
